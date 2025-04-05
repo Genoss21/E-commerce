@@ -73,7 +73,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-
+//For tabs that shows 5 items per category 
+function showTab(index) {
+    document.querySelectorAll('.tab-content').forEach((tab, i) => {
+        tab.classList.toggle('hidden', i !== index);
+    });
+}
 
 
 //for the search button
