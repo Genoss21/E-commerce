@@ -1,4 +1,33 @@
-//For the carousel 
+//For the discount carrousel
+const messages = [
+    "Buy 1 Get 1 Free!",
+    "Limited Time Offer!",
+    "Up to 70% OFF!",
+    "Free Shipping Today!",
+    "New Deals Every Hour!"
+  ];
+
+  let current = 0;
+  const text = document.getElementById("carousel-text");
+  const prev = document.getElementById("prev");
+  const next = document.getElementById("next");
+
+  function updateText() {
+    text.textContent = messages[current];
+  }
+
+  prev.addEventListener("click", () => {
+    current = (current - 1 + messages.length) % messages.length;
+    updateText();
+  });
+
+  next.addEventListener("click", () => {
+    current = (current + 1) % messages.length;
+    updateText();
+  });
+
+
+//For the products carousel 
 document.addEventListener("DOMContentLoaded", function () {
     const carousel = document.getElementById("carousel-container");
     const items = document.querySelectorAll(".carousel-item");
