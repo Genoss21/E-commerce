@@ -14,7 +14,7 @@
     <!-- <?php include 'layout/navbar.php'; ?> -->
     <nav class="sticky top-0 z-10">
     <!--Discounts-->
-        <div class="sticky w-full bg-gray-500 bg-transparent-500 bg-opacity-50 backdrop-blur-lg py-1">
+        <div class="sticky w-full bg-gray-700 bg-transparent-500 bg-opacity-50 backdrop-blur-lg py-1">
             <div class="max-w-screen-lg mx-auto">
                 <!-- Arrows -->
                 <div class="flex justify-between items-center px-2">
@@ -320,7 +320,7 @@
 
         <!--Product mega menu-->
         <div id="product-menu" class="absolute w-full hidden z-10">
-            <div class="mt-2 border-gray-200 shadow-xs bg-[rgba(249,250,251,0.7)] md:bg-white md:bg-opacity-100 border-y dark:bg-[rgba(31,41,55,0.7)] dark:border-gray-600">
+            <div class="mt-2 border-gray-200 shadow-xs bg-[rgba(249,250,251,0.7)] md:bg-white md:bg-opacity-100 backdrop-blur-lg border-y dark:bg-[rgba(31,41,55,0.7)] dark:border-gray-600">
                 <div class="grid md:grid-cols-6 max-w-screen-2xl px-4 py-5 mx-auto text-gray-900 dark:text-white grid-cols-2 md:px-6 gap-4" aria-labelledby="product-menuButton">
                     <?php foreach ($data['subcategories'] as $category => $subcatData): ?>
                         <ul>
@@ -343,7 +343,7 @@
 
 
         <div id="support-menu" class="absolute w-full hidden z-10">
-            <div class="mt-2 border-gray-200 shadow-xs bg-[rgba(249,250,251,0.7)] md:bg-white md:bg-opacity-100 border-y dark:bg-[rgba(31,41,55,0.7)] dark:border-gray-600">
+            <div class="mt-2 border-gray-200 shadow-xs bg-[rgba(249,250,251,0.7)] md:bg-white md:bg-opacity-100 backdrop-blur-lg border-y dark:bg-[rgba(31,41,55,0.7)] dark:border-gray-600">
                 <div class="grid max-w-screen-2xl px-4 py-5 mx-auto text-gray-900 dark:text-white sm:grid-cols-2 md:px-6" aria-labelledby="support-menuButton">
                     <ul>
                         <li>
@@ -415,7 +415,7 @@
                 <?php foreach ($data['featuredProducts'] as $product): ?>
                     <div class="carousel-item min-w-full flex-shrink-0">
                         <a href="">
-                            <img src="<?= '/public' . $product['product_image_file'] ?>" alt="<?= htmlspecialchars($product['name']) ?>" class="w-full md:h-[800px] h-32 object-cover">
+                            <img src="<?= '/public' . $product['product_image_file'] ?>" alt="<?= htmlspecialchars($product['name']) ?>" class="md:w-full w-auto md:h-[800px] h-[350px] object-cover">
                         </a>
                         <!-- <h3 class="text-center mt-2 font-semibold"><?= htmlspecialchars($product['name']) ?></h3> -->
                     </div>
@@ -423,13 +423,13 @@
                 <!-- Cloned first slide for smooth infinite looping -->
                 <div class="carousel-item min-w-full flex-shrink-0">
                     <a href="">
-                        <img src="<?= '/public' . $data['featuredProducts'][0]['product_image_file'] ?>" alt="<?= htmlspecialchars($data['featuredProducts'][0]['name']) ?>" class="w-full md:h-[800px] h-32 object-cover">
+                        <img src="<?= '/public' . $data['featuredProducts'][0]['product_image_file'] ?>" alt="<?= htmlspecialchars($data['featuredProducts'][0]['name']) ?>" class="md:w-full w-auto md:h-[800px] h-[350px] object-cover">
                     </a>
                     <!-- <h3 class="text-center mt-2 font-semibold"><?= htmlspecialchars($data['featuredProducts'][0]['name']) ?></h3> -->
                 </div>
             </div> 
             <!-- Progress Bars -->
-            <div class="absolute inset-x-0 bottom-10 flex space-x-2 mt-3 justify-center">
+            <div class="absolute inset-x-0 md:bottom-10 bottom-5 flex space-x-2 mt-3 justify-center">
                 <?php foreach ($data['featuredProducts'] as $index => $product): ?>
                     <div class="progress-bar bg-gray-300 w-12 h-1 m-2 rounded-full overflow-hidden cursor-pointer" 
                         data-index="<?= $index ?>">
@@ -444,17 +444,63 @@
 
 
     <!-- Categories Gallery -->
-    <div class="container mx-auto mt-10">
-        <h2 class="text-2xl font-bold mb-3">Categories</h2>
-        <div class="grid grid-cols-5 gap-4">
-            <?php foreach ($data['categories'] as $category): ?>
-                <div class="bg-white shadow-lg rounded-lg p-3">
-                    <img src="public/<?= $category['image_file'] ?>" class="w-full h-32 object-cover rounded">
-                    <h3 class="text-center mt-2 font-semibold"><?= $category['category_name'] ?></h3>
-                </div>
-            <?php endforeach; ?>
+    <div class="container mx-auto mt-16 md:px-0 px-4">
+        <h2 class="flex text-2xl font-base mb-10 text-center justify-center">Find the Right Keyboard for You</h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-5 md:gap-6 gap-3">
+
+            <!-- Rectangle 1: Keyboard -->
+            <div class="col-span-2 md:col-span-3 order-1 bg-white shadow-lg rounded-lg overflow-hidden">
+                <a href="" class="relative block group">
+                    <img src="public/images/categories/keyboard.jpg" class="relative w-full md:h-[300px] h-[150px] object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" alt="Keyboard">
+                    <h3 class="absolute inset-x-0 bottom-0 text-white text-center text-xl font-base p-3 bg-black bg-opacity-30 group-hover:bg-opacity-60 transition-all duration-300 ease-in-out">Keyboard <i class="uil uil-angle-right"></i></h3>
+                </a>
+            </div>
+
+            <!-- Rectangle 2: Barebone -->
+            <div class="col-span-2 md:col-span-3 order-2 md:order-5 bg-white shadow-lg rounded-lg overflow-hidden">
+                <a href="" class="relative block group">
+                    <img src="public/images/categories/barebone_kit.jpg" class="relative w-full md:h-[300px] h-[150px] object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" alt="Barebone Kit">
+                    <h3 class="absolute inset-x-0 bottom-0 text-white text-center text-xl font-base p-3 bg-black bg-opacity-30 group-hover:bg-opacity-60 transition-all duration-300 ease-in-out">Barebone Kit<i class="uil uil-angle-right"></i></h3>
+                </a>
+            </div>
+
+            <!-- Square 1: Switches -->
+            <div class="order-3 md:order-2 bg-white shadow-lg rounded-lg overflow-hidden">
+                <a href="" class="relative block group">
+                    <img src="public/images/categories/key_switches.jpg" class="relative w-full md:h-[300px] h-[150px] object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" alt="Switches">
+                    <h3 class="absolute inset-x-0 bottom-0 text-white text-center text-xl font-base p-3 bg-black bg-opacity-30 group-hover:bg-opacity-60 transition-all duration-300 ease-in-out">Switches<i class="uil uil-angle-right"></i></h3>
+                </a>
+            </div>
+
+            <!-- Square 2: Accessories -->
+            <div class="order-6 md:order-6 bg-white shadow-lg rounded-lg overflow-hidden">
+                <a href="" class="relative block group">
+                    <img src="public/images/categories/accessories.jpg" class="relative w-full md:h-[300px] h-[150px] object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" alt="Switches">
+                    <h3 class="absolute inset-x-0 bottom-0 text-white text-center text-xl font-base p-3 bg-black bg-opacity-30 group-hover:bg-opacity-60 transition-all duration-300 ease-in-out">Accessories<i class="uil uil-angle-right"></i></h3>
+                </a>
+            </div>
+
+            <!-- Square 3: Mouse -->
+            <div class="order-5 md:order-4 bg-white shadow-lg rounded-lg overflow-hidden">
+                <a href="" class="relative block group">
+                    <img src="public/images/categories/mouse.jpg" class="relative w-full md:h-[300px] h-[150px] object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" alt="Switches">
+                    <h3 class="absolute inset-x-0 bottom-0 text-white text-center text-xl font-base p-3 bg-black bg-opacity-30 group-hover:bg-opacity-60 transition-all duration-300 ease-in-out">Mouse<i class="uil uil-angle-right"></i></h3>
+                </a>
+            </div>
+
+            <!-- Square 4: Keycaps -->
+            <div class="order-4 md:order-3 bg-white shadow-lg rounded-lg overflow-hidden">
+                <a href="" class="relative block group">
+                    <img src="public/images/categories/keycaps.jpg" class="relative w-full md:h-[300px] h-[150px] object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" alt="Switches">
+                    <h3 class="absolute inset-x-0 bottom-0 text-white text-center text-xl font-base p-3 bg-black bg-opacity-30 group-hover:bg-opacity-60 transition-all duration-300 ease-in-out">Keycaps<i class="uil uil-angle-right"></i></h3>
+                </a>
+            </div>
+
         </div>
     </div>
+
+
 
     <!-- Tab Section -->
     <div class="container mx-auto mt-10">
