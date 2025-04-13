@@ -107,7 +107,18 @@ function showTab(index) {
     document.querySelectorAll('.tab-content').forEach((tab, i) => {
         tab.classList.toggle('hidden', i !== index);
     });
+
+    document.querySelectorAll('.tab-button').forEach((button, i) => {
+        button.classList.toggle('border-b-4', i === index);
+        button.classList.toggle('border-gray-700', i === index);
+        button.classList.toggle('active', i === index); // Add active class toggle
+    });
 }
+
+// Set the active tab to the first one on page load
+document.addEventListener("DOMContentLoaded", function () {
+    showTab(0);
+});
 
 
 //for the search button
