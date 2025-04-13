@@ -14,7 +14,7 @@
     <!-- <?php include 'layout/navbar.php'; ?> -->
     <nav class="sticky top-0 z-10">
     <!--Discounts-->
-        <div class="sticky w-full bg-gray-700 bg-transparent-500 bg-opacity-50 backdrop-blur-lg py-1">
+        <div class="sticky w-full bg-gray-700 bg-transparent-500 bg-opacity-50 backdrop-blur-lg py-.05">
             <div class="max-w-screen-lg mx-auto">
                 <!-- Arrows -->
                 <div class="flex justify-between items-center px-2">
@@ -30,7 +30,7 @@
         </div>
         <!--Navbar-->
         <div class="w-full bg-white border-gray-200 dark:border-gray-600 dark:bg-gray-900">
-            <div class="relative flex flex-wrap max-w-screen-2xl mx-auto justify-between items-center md:py-2.5 py-4 md:px-0 px-4">
+            <div class="relative flex flex-wrap max-w-screen-2xl mx-auto justify-between items-center md:py-3 py-4 md:px-0 px-4">
                 <button data-collapse-toggle="product-menu-full" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">                    <span class="sr-only">Open main menu</span>
                     <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
@@ -320,7 +320,7 @@
 
         <!--Product mega menu-->
         <div id="product-menu" class="absolute w-full hidden z-10">
-            <div class="mt-2 border-gray-200 shadow-xs bg-[rgba(249,250,251,0.7)] md:bg-white md:bg-opacity-100 backdrop-blur-lg border-y dark:bg-[rgba(31,41,55,0.7)] dark:border-gray-600">
+            <div class="mt-2.5 border-gray-200 shadow-xs bg-[rgba(249,250,251,0.7)] md:bg-white md:bg-opacity-100 backdrop-blur-lg border-y dark:bg-[rgba(31,41,55,0.7)] dark:border-gray-600">
                 <div class="grid md:grid-cols-6 max-w-screen-2xl px-4 py-5 mx-auto text-gray-900 dark:text-white grid-cols-2 md:px-6 gap-4" aria-labelledby="product-menuButton">
                     <?php foreach ($data['subcategories'] as $category => $subcatData): ?>
                         <ul>
@@ -343,7 +343,7 @@
 
 
         <div id="support-menu" class="absolute w-full hidden z-10">
-            <div class="mt-2 border-gray-200 shadow-xs bg-[rgba(249,250,251,0.7)] md:bg-white md:bg-opacity-100 backdrop-blur-lg border-y dark:bg-[rgba(31,41,55,0.7)] dark:border-gray-600">
+            <div class="mt-2.5 border-gray-200 shadow-xs bg-[rgba(249,250,251,0.7)] md:bg-white md:bg-opacity-100 backdrop-blur-lg border-y dark:bg-[rgba(31,41,55,0.7)] dark:border-gray-600">
                 <div class="grid max-w-screen-2xl px-4 py-5 mx-auto text-gray-900 dark:text-white sm:grid-cols-2 md:px-6" aria-labelledby="support-menuButton">
                     <ul>
                         <li>
@@ -440,12 +440,9 @@
         </div>
     </div>
 
-
-
-
     <!-- Categories Gallery -->
-    <div class="container mx-auto mt-16 md:px-0 px-4">
-        <h2 class="flex text-2xl font-base mb-10 text-center justify-center">Find the Right Keyboard for You</h2>
+    <div class="container mx-auto mt-16 md:px-0 px-4 mb-10">
+        <h2 class="flex text-2xl font-bold mb-10 text-center justify-center">Find the Right Keyboard for You</h2>
 
         <div class="grid grid-cols-2 md:grid-cols-5 md:gap-6 gap-3">
 
@@ -500,26 +497,35 @@
         </div>
     </div>
 
-
-
     <!-- Tab Section -->
-    <div class="container mx-auto mt-10">
-        <h2 class="text-2xl font-bold mb-3">Browse by Category</h2>
-        <div class="flex space-x-4 mb-4">
+    <div class="max-w-screen-2xl md:mx-auto mx-4 mt-10">
+        <h2 class="flex justify-center text-center text-2xl font-bold mb-4">Best Selling Products/Top Selling</h2>
+        <div class="flex justify-start md:justify-center md:max-w-screen-md w-full mx-auto px-4 pb-8 items-center gap-4 mb-4 overflow-x-auto scrollbar-none scroll-smooth">
+            <?php
+                $desiredOrder = ["Keyboard", "Barebone Kit", "Key Switches", "Keycaps", "Mouse", "Accessories"];
+
+                usort($data['categories'], function($a, $b) use ($desiredOrder) {
+                    $posA = array_search($a['category_name'], $desiredOrder);
+                    $posB = array_search($b['category_name'], $desiredOrder);
+                    return $posA - $posB;
+                });
+            ?>
+
             <?php foreach ($data['categories'] as $index => $category): ?>
-                <button class="px-4 py-2 bg-blue-500 text-white rounded" onclick="showTab(<?= $index ?>)">
+                <button class="px-4 py-2 text-black whitespace-nowrap tab-button" onclick="showTab(<?= $index ?>)">
                     <?= $category['category_name'] ?>
                 </button>
             <?php endforeach; ?>
         </div>
+
         
-        <div>
+        <div class="">
             <?php foreach ($data['categories'] as $index => $category): ?>
-                <div class="tab-content <?= $index === 0 ? '' : 'hidden' ?>" id="tab-<?= $index ?>">
-                    <div class="grid grid-cols-5 gap-4">
+                <div class="tab-content px-0 <?= $index === 0 ? '' : 'hidden' ?>" id="tab-<?= $index ?>">
+                    <div class="grid grid-rows-2 grid-cols-2 lg:grid-cols-5 lg:grid-rows-none gap-4">
                         <?php foreach ($data['productsByCategory'][$category['category_id']] as $product): ?>
-                            <div class="bg-white shadow-lg rounded-lg p-3">
-                                <img src="public<?= $product['image_file'] ?>" class="w-full h-32 object-cover rounded">
+                            <div class="h-96 bg-white shadow-lg rounded-lg p-3">
+                                <img src="public<?= $product['image_file'] ?>" class="w-full h-[220px] object-scale-down rounded">
                                 <h3 class="text-center mt-2 font-semibold"><?= $product['name'] ?></h3>
                                 <p class="text-center text-gray-700">$<?= number_format($product['price'], 2) ?></p>
                             </div>
@@ -529,6 +535,9 @@
             <?php endforeach; ?>
         </div>
     </div>
+    
+
+    <div class="h-screen">1</div>
 
     <script src="public/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
