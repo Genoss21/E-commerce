@@ -5,8 +5,22 @@
 
 <body class="bg-gray-100">
 
+    <!-- Navbar -->
     <?php include 'layout/navbar.php'; ?>
     
+    
+    <h2 class="text-2xl font-bold mb-4">Products under this subcategory</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <?php foreach ($products as $product): ?>
+            <div class="bg-white rounded-lg shadow p-4">
+                <img src="/public/images/products/<?= $product['image_file'] ?>" alt="<?= $product['name'] ?>" class="w-full h-40 object-cover mb-2">
+                <h3 class="font-semibold"><?= $product['name'] ?></h3>
+                <p class="text-sm text-gray-600">$<?= $product['price'] ?></p>
+            </div>
+        <?php endforeach; ?>
+    </div>
+
+
 
     <!-- Featured Products Carousel -->
     <!-- <pre><?php print_r($data['featuredProducts']); ?></pre> -->

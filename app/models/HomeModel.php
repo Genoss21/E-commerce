@@ -15,17 +15,16 @@ class HomeModel {
                                     ORDER BY f.sort_order ASC");
         $stmt->execute();
         $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
-        // Add product image file from Products table if necessary
+
+        // Fallback to product image if featured image is missing
         foreach ($products as &$product) {
             if (empty($product['product_image_file'])) {
-                $product['product_image_file'] = $product['image_file'];  // Use Products image if Featured doesn't have one
+                $product['product_image_file'] = $product['image_file'];
             }
         }
-    
+
         return $products;
     }
-    
 
     public function getCategories() {
         $stmt = $this->db->prepare("SELECT * FROM Categories LIMIT 6");
@@ -40,37 +39,41 @@ class HomeModel {
     }
 
     public function getAllSubcategories() {
-        $subcategories = [];
+        $stmt = $this->db->prepare("SELECT sc.*, c.category_name AS category_name 
+                                    FROM subcategories sc 
+                                    JOIN categories c ON sc.category_id = c.category_id 
+                                    ORDER BY sc.category_id, sc.name");
+        $stmt->execute();
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
-        $tables = [
-            'Keyboard_Subcategories',
-            'Switches_Subcategories',
-            'Barebone_Subcategories',
-            'Keycaps_Subcategories',
-            'Mouse_Subcategories',
-            'Accessories_Subcategories'
+        // Group subcategories by category
+        $grouped = [];
+    
+        // Map for preview images
+        $previewImages = [
+            "Keyboard" => "keyboard_sub.jpg",
+            "Key Switches" => "switch_sub.jpg",
+            "BareBone Kit" => "diykit_sub.jpg",
+            "Keycaps" => "keycaps_sub.jpg",
+            "Mouse" => "mouse_sub.jpg",
+            "Accessories" => "accessories_sub.jpg"
         ];
     
-        // Category images mapping
-        $categoryImages = [
-            "Keyboard_Subcategories" => "keyboard_sub.jpg",
-            "Switches_Subcategories" => "switch_sub.jpg",
-            "Barebone_Subcategories" => "diykit_sub.jpg",
-            "Keycaps_Subcategories" => "keycaps_sub.jpg",
-            "Mouse_Subcategories" => "mouse_sub.jpg",
-            "Accessories_Subcategories" => "accessories_sub.jpg"
-        ];
-    
-        foreach ($tables as $table) {
-            $stmt = $this->db->prepare("SELECT name FROM $table");
-            $stmt->execute();
-            $subcategories[$table] = [
-                'image' => $categoryImages[$table] ?? 'default.jpg', // Assign image
-                'items' => $stmt->fetchAll(PDO::FETCH_ASSOC)
+        foreach ($rows as $row) {
+            $categoryName = $row['category_name'];
+            if (!isset($grouped[$categoryName])) {
+                $grouped[$categoryName] = [
+                    'image' => $previewImages[$categoryName] ?? 'default.jpg',
+                    'items' => []
+                ];
+            }
+            $grouped[$categoryName]['items'][] = [
+                'name' => $row['name'],
+                'image_file' => $row['image_file']
             ];
         }
     
-        return $subcategories;
+        return $grouped;
     }
     
 }

@@ -1,6 +1,7 @@
 <?php
 
 require_once "app/models/HomeModel.php";
+
 class HomeController extends Controller {
     private $homeModel;
 
@@ -9,22 +10,27 @@ class HomeController extends Controller {
     }
 
     public function index() {
+        // Get all featured products
         $featuredProducts = $this->homeModel->getFeaturedProducts();
+
+        // Get all categories
         $categories = $this->homeModel->getCategories();
+
+        // Get all subcategories
+        $subcategories = $this->homeModel->getAllSubCategories();
+
+        // Get products by each category
         $productsByCategory = [];
-
-
         foreach ($categories as $category) {
             $productsByCategory[$category['category_id']] = $this->homeModel->getProductsByCategory($category['category_id']);
         }
 
-        $subcategories = $this->homeModel->getAllSubCategories();
-
+        // Pass data to the view
         $this->view("home", [
             'featuredProducts' => $featuredProducts,
             'categories' => $categories,
-            'productsByCategory' => $productsByCategory,
             'subcategories' => $subcategories,
+            'productsByCategory' => $productsByCategory
         ]);
     }
 }
