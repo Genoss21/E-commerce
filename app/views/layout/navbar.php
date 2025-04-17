@@ -27,7 +27,7 @@
                     </svg>
                 </button>
 
-                <a href="" class="flex items-center">
+                <a href="/" class="flex items-center">
                     <img src="../public/images/akko-logo-w.svg" class="h-8" alt="Ako Logo" />
                 </a>
 
@@ -312,6 +312,14 @@
         <div id="product-menu" class="absolute w-full hidden z-10">
             <div class="mt-2.5 border-gray-200 shadow-xs bg-[rgba(249,250,251,0.7)] md:bg-white md:bg-opacity-100 backdrop-blur-lg border-y dark:bg-[rgba(31,41,55,0.7)] dark:border-gray-600">
                 <div class="grid md:grid-cols-6 max-w-screen-2xl px-4 py-5 mx-auto text-gray-900 dark:text-white grid-cols-2 md:px-6 gap-4" aria-labelledby="product-menuButton">
+                    <?php
+                        if (!isset($data['subcategories'])) {
+                            require_once 'app/models/HomeModel.php';
+                            $model = new HomeModel();
+                            $data['subcategories'] = $model->getAllSubcategories();
+                        }
+                        require_once 'app/views/layout/navbar.php';
+                    ?>
                     <?php foreach ($data['subcategories'] as $category => $subcatData): ?>
                         <ul>
                             <h3 class="flex items-center p-4 font-bold text-sm border-b rounded-lg mb-2">
@@ -320,9 +328,11 @@
                             </h3>
                             <?php foreach ($subcatData['items'] as $subcat): ?>
                                 <li>
-                                    <a href="#" class="block py-2 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 hover:translate-x-2 transition-transform duration-300 ease-in-out">
-                                        <div class="text-sm font-normal"><?= $subcat['name'] ?></div>
-                                    </a>
+                                <a href="/subcategory.php?id=<?= $subcat['id'] ?>" 
+                                class="block py-2 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 hover:translate-x-2 transition-transform duration-300 ease-in-out">
+                                    <div class="text-sm font-normal"><?= $subcat['name'] ?></div>
+                                </a>
+
                                 </li>
                             <?php endforeach; ?>
                         </ul>

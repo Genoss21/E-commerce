@@ -67,7 +67,10 @@ class HomeModel {
                     'items' => []
                 ];
             }
+    
+            // Include subcategory_id for linking
             $grouped[$categoryName]['items'][] = [
+                'id' => $row['subcategory_id'],
                 'name' => $row['name'],
                 'image_file' => $row['image_file']
             ];
