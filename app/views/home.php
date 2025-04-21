@@ -51,7 +51,7 @@
 
             <!-- Rectangle 1: Keyboard -->
             <div class="col-span-2 md:col-span-3 order-1 bg-white shadow-lg rounded-lg overflow-hidden">
-                <a href="" class="relative block group">
+                <a href="/category/show/1" class="relative block group">
                     <img src="public/images/categories/keyboard.jpg" class="relative w-full md:h-[300px] h-[150px] object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" alt="Keyboard">
                     <h3 class="absolute inset-x-0 bottom-0 text-white text-center text-xl font-base p-3 bg-black bg-opacity-30 group-hover:bg-opacity-60 transition-all duration-300 ease-in-out">Keyboard <i class="uil uil-angle-right"></i></h3>
                 </a>
@@ -59,7 +59,7 @@
 
             <!-- Rectangle 2: Barebone -->
             <div class="col-span-2 md:col-span-3 order-2 md:order-5 bg-white shadow-lg rounded-lg overflow-hidden">
-                <a href="" class="relative block group">
+                <a href="/category/show/2" class="relative block group">
                     <img src="public/images/categories/barebone_kit.jpg" class="relative w-full md:h-[300px] h-[150px] object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" alt="Barebone Kit">
                     <h3 class="absolute inset-x-0 bottom-0 text-white text-center text-xl font-base p-3 bg-black bg-opacity-30 group-hover:bg-opacity-60 transition-all duration-300 ease-in-out">Barebone Kit<i class="uil uil-angle-right"></i></h3>
                 </a>
@@ -67,7 +67,7 @@
 
             <!-- Square 1: Switches -->
             <div class="order-3 md:order-2 bg-white shadow-lg rounded-lg overflow-hidden">
-                <a href="" class="relative block group">
+                <a href="/category/show/3" class="relative block group">
                     <img src="public/images/categories/key_switches.jpg" class="relative w-full md:h-[300px] h-[150px] object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" alt="Switches">
                     <h3 class="absolute inset-x-0 bottom-0 text-white text-center text-xl font-base p-3 bg-black bg-opacity-30 group-hover:bg-opacity-60 transition-all duration-300 ease-in-out">Switches<i class="uil uil-angle-right"></i></h3>
                 </a>
@@ -75,7 +75,7 @@
 
             <!-- Square 2: Accessories -->
             <div class="order-6 md:order-6 bg-white shadow-lg rounded-lg overflow-hidden">
-                <a href="" class="relative block group">
+                <a href="/category/show/4" class="relative block group">
                     <img src="public/images/categories/accessories.jpg" class="relative w-full md:h-[300px] h-[150px] object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" alt="Switches">
                     <h3 class="absolute inset-x-0 bottom-0 text-white text-center text-xl font-base p-3 bg-black bg-opacity-30 group-hover:bg-opacity-60 transition-all duration-300 ease-in-out">Accessories<i class="uil uil-angle-right"></i></h3>
                 </a>
@@ -83,7 +83,7 @@
 
             <!-- Square 3: Mouse -->
             <div class="order-5 md:order-4 bg-white shadow-lg rounded-lg overflow-hidden">
-                <a href="" class="relative block group">
+                <a href="/category/show/5" class="relative block group">
                     <img src="public/images/categories/mouse.jpg" class="relative w-full md:h-[300px] h-[150px] object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" alt="Switches">
                     <h3 class="absolute inset-x-0 bottom-0 text-white text-center text-xl font-base p-3 bg-black bg-opacity-30 group-hover:bg-opacity-60 transition-all duration-300 ease-in-out">Mouse<i class="uil uil-angle-right"></i></h3>
                 </a>
@@ -91,7 +91,7 @@
 
             <!-- Square 4: Keycaps -->
             <div class="order-4 md:order-3 bg-white shadow-lg rounded-lg overflow-hidden">
-                <a href="" class="relative block group">
+                <a href="/category/show/6" class="relative block group">
                     <img src="public/images/categories/keycaps.jpg" class="relative w-full md:h-[300px] h-[150px] object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" alt="Switches">
                     <h3 class="absolute inset-x-0 bottom-0 text-white text-center text-xl font-base p-3 bg-black bg-opacity-30 group-hover:bg-opacity-60 transition-all duration-300 ease-in-out">Keycaps<i class="uil uil-angle-right"></i></h3>
                 </a>
